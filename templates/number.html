@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+
+    <h3>Number Recognition</h3>
+
+
+    <img src="{{image_filename}}" alt="Number image" style="width:10%; height:10%; ">
+
+    <br>
+    <h4 style="color: blue;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your image is interpreted  as &nbsp;<span
+            style="color:tomato;font-weight:bold">{{airesult  }}</span>  &nbsp;using <q>Convolutional Neural Network</q>.</h4>
+    <!-- <img src="static/blue_OK.png" style="width:3%; height:3%; "> -->
+
+
+</div>
+
+
+</div>
+
+
+{% endblock %}
+

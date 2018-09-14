@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script>
+function myFunction() {
+
+    alert("myFunction");
+    var x = document.getElementById("myDIV");
+    alert(x.style.display);
+    if (x.style.display === "none") {
+        alert("myFunction  1");
+        x.style.display = "block";
+    } else {
+        alert("myFunction 2");
+        x.style.display = "none";
+        x.style.display = "block";
+    }
+}
+</script>
+<h3> Classify </h3>
+
+
+<img src="{{ image_filename }}" alt="image" style="width:30%; height:auto; margin:50 auto;"">
+
+<br>
+
+
+&nbsp;&nbsp;&nbsp;<button onclick="myFunction()">Recogonise Image using AI </button>
+
+<div id="myDIV">
+<img src="static/processing.gif" alt="image"  style="display: block;background-color: white; width: 5%;  height:5% border: 1px solid white;">
+
+</div>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+<div id="div1"><h4></h4></div>
+
+<br><br>
+<form action="" method="get" e >
+
+
+    &nbsp;&nbsp;&nbsp;<input type="submit" value="Home" class="btn btn-primary">
+
+  </form>
+
+
+
+
+
+
+<br><br><br>
+{% endblock %}
+

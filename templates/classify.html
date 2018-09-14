@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+
+    function init() {
+
+        document.getElementById("aisubmit").style.display = "none";
+    }
+
+</script>
+
+<div class="jumbotron">
+<h3> Classify </h3>
+
+
+<img src="{{ image_filename }}" alt="image" style="width:30%; height:auto; margin:50 auto;"">
+<p>   </p>
+<br><br>
+
+
+   <form  action="/interpret" method="get"  >
+
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Apply AI" class="btn btn-primary">
+
+  </form>
+
+
+</div>
+
+
+
+<br>
+{% endblock %}
+

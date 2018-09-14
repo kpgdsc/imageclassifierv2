@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+    <header class="navbar">
+
+        <div id="fileselect">
+
+            &nbsp;&nbsp;<h3 style="color:blue;"> Select the image file to classify</h3>
+            <form action="/upload" method="post" enctype="multipart/form-data" id="uploadform">
+
+                <p style="color:slateblue;">Select your image&nbsp;&nbsp; <input type="file" name="image">
+
+
+                    <br> <br>
+
+                    &nbsp;&nbsp;&nbsp;<input type="submit" value="Upload your image" class="btn btn-primary">
+
+            </form>
+        </div>
+</div>
+<br>
+
+
+</header>
+
+
+<br>
+{% endblock %}
+

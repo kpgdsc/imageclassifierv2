@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+
+    <style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+    </style>
+
+    <style>
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 30%;
+    padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+    </style>
+
+    <style>
+    img.logo
+        {
+        display:inline-block;
+        margin-left:auto;
+        margin-right:auto;
+        width:400px;
+        height:312px;
+        }
+
+
+    </style>
+
+    </head>
+
+
+    <body onload="myFunction()" style="margin:0;">
+
+
+    <div id="loader"></div>
+
+    <div style="display:none;" id="myDiv" class="">
+
+        <div class="jumbotron">
+            <h3 style="color:blue">Result </h3>
+
+
+            <img src="{{ image_filename }}" alt="image" style="width:30%; height:auto; margin:50 auto;"">
+
+            <br>
+            <p style="color: blue;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your image is classfied as : &nbsp;<span
+                    style="color:tomato;font-weight:bold">{{airesult  }}</span></p>
+
+            <br>
+
+
+        </div>
+    </div>
+    <br>
+    <div class="row" id="power">
+
+
+        <div class="column">
+            <img src="static/tflow2.png" alt="Tensor Flow Image">
+        </div>
+
+        <div class="column">
+            <img src="static/flask.png" alt="Flask Image">
+        </div>
+
+        <div class="column">
+            <img src="static/python.png" alt="Python Image">
+        </div>
+    </div>
+
+
+    <script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 300);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+  document.getElementById("power").style.display = "none";
+
+
+}
+
+    </script>
+
+
+</div>  <!--  jumbotron   -->
+
+
+{% endblock %}
