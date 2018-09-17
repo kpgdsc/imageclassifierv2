@@ -1,15 +1,11 @@
-import os, stat, time
-from os import path
+import os,  time
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import shutil
 from forms import ClassifyForm
-from PIL import Image
-import base64
 import re
-import cStringIO
 from imgclassifywrapper import  Imgclassifywrapper
 from  predict   import predictint, imageprepare
-import random
+
 
 
 app = Flask(__name__)
@@ -23,7 +19,6 @@ NUMBER_IMAGE_FILE_FINAL = None
 
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 
 def allowed_file(filename):
@@ -174,11 +169,10 @@ def num_prediction():
 
     imvalue = imageprepare(image_filename)
     print('0')
-    predint = predictint(imvalue)
-    print('1')
-    print (predint[0])  # first value in list
+    predint_global = predictint(imvalue)
 
-    airesult = predint[0]
+
+    airesult = predint_global[0]
 
     return render_template('number.html', image_filename=image_filename, airesult=airesult)
 
@@ -200,7 +194,12 @@ def archive_file(source_filename):
     except:
         print("Unexpected error:", sys.exc_info())
 
-
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'no-store'
+    return response
 
 if __name__ == '__main__' :
     app.run(debug=True)
