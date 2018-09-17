@@ -1,6 +1,6 @@
-PIL
 tensorflow
 Flask
+Pillow
 uwsgi
 psycopg2
 
