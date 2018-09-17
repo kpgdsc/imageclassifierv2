@@ -162,6 +162,7 @@ def save_canvas():
 
 
     print('\n\n END saving canvas.......')
+    return "Successfully saved the image file"
 
 @app.route('/num_prediction', methods=['Get'])
 def num_prediction():

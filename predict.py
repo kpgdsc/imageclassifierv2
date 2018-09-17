@@ -57,7 +57,8 @@ def predictint(imvalue):
     
     y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
     
-    init_op = tf.initialize_all_variables()
+    #init_op = tf.initialize_all_variables()
+    init_op = tf.global_variables_initializer()
     saver = tf.train.Saver()
     
     """
@@ -90,8 +91,8 @@ def imageprepare(argv):
     if width > height: #check which dimension is bigger
         #Width is bigger. Width becomes 20 pixels.
         nheight = int(round((20.0/width*height),0)) #resize height according to ratio width
-        if (nheigth == 0): #rare case but minimum is 1 pixel
-            nheigth = 1  
+        if (nheight == 0): #rare case but minimum is 1 pixel
+            nheight = 1
         # resize and sharpen
         img = im.resize((20,nheight), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
         wtop = int(round(((28 - nheight)/2),0)) #caculate horizontal pozition
@@ -111,8 +112,13 @@ def imageprepare(argv):
     tv = list(newImage.getdata()) #get pixel values
     
     #normalize pixels to 0 and 1. 0 is pure white, 1 is pure black.
-    tva = [ (255-x)*1.0/255.0 for x in tv] 
+    tva = [ (255-x)*1.0/255.0 for x in tv]
+
+    print ( type(tva))
+    print(tva)
+
     return tva
+
     #print(tva)
 
 def main(argv):
