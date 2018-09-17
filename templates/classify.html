@@ -3,34 +3,68 @@
 
 <script type="text/javascript">
 
-    function init() {
-
-        document.getElementById("aisubmit").style.display = "none";
+    function init(){
+       $( "p" ).hide();
+       $("#homebtn").hide();
+       $("#progbar").hide();
     }
 
 </script>
 
+
 <div class="jumbotron">
-<h3> Classify </h3>
+    <h3> Classify </h3>
 
 
-<img src="{{ image_filename }}" alt="image" style="width:30%; height:auto; margin:50 auto;"">
-<p>   </p>
-<br><br>
+    <img src="{{ image_filename }}" alt="image" style="width:30%; height:auto; margin:50 auto;"">
+     <br><br>
 
 
-   <form  action="/interpret" method="get"  >
+    <input type="button" value="Apply Ai" id="applyai" size="23" onclick="applyai()" class="btn btn-primary">
 
 
+<img   src="static/images/processing.gif"  alt="loading" style="width:7%; height:auto;" id="progbar">
+    <br>
 
-    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Apply AI" class="btn btn-primary">
+    <p style="color: slateblue;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your image is classfied as : <span style="color:tomato;font-weight:bold" id="result"></span> &nbsp; </p>
+    <br> <br>
 
-  </form>
+    <form action="/" method="get">
+
+
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Home" class="btn btn-primary" id="homebtn">
+
+
+    </form>
 
 
 </div>
+<script type="text/javascript">
 
 
+
+    function applyai()
+    {
+         $("#progbar").show();
+          $("#applyai").hide();
+
+        $.get( "/interpret2", function( data ) {
+          $("#result").append(data);
+          $("p").show();
+
+
+          $("#progbar").hide();
+
+        });
+
+
+
+
+    }
+
+
+
+</script>
 
 <br>
 {% endblock %}

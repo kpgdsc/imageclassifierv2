@@ -16,31 +16,27 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
     <link rel="stylesheet" href="static/css/master.css">
 
     <title>Cayenne Image Recogniiser</title>
+    <link rel="icon"        type="image/png"     href="static/images/cayenne.png">
 
-    <script>
-      $(document).ready(function(){
-          $("button").click(function(){
-              var x = document.getElementById("myDIV");
-              x.style.display = "block";
 
-          });
-      });
-
-    </script>
 
 </head>
 <body onload="init()">
 
 <nav class="navbar navbar-dark bg-primary">
 
+
+
     <ul class="nav">
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-        </li>
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+    <img src="static/images/cayenne.png" width="20" height="30" alt="">
+  </a>
+
 
         <li class="nav-item">
             <a class="nav-link" href="{{ url_for('image') }}">| Image Recognition |</I></a>
@@ -70,6 +66,8 @@
     {% endwith %}
 
     {% block content %}
+
+
 
     {% endblock %}
     <br>

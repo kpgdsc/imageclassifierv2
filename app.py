@@ -35,29 +35,35 @@ def home():
 
 @app.route('/image')
 def image():
-    return render_template('index.html')
+    return render_template('selectimage.html')
 
 
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+
+    if request.files == None :
+        return render_template('selectimage.html')
+
+
     file = request.files['image']
     print('type : ' + str(type(file)))
 
+
     if file.filename == None or len(file.filename) ==0 :
-        return render_template('index.html')
+        return render_template('selectimage.html')
 
     if file.filename == '':
         flash('No selected file')
         return redirect(request.url)
     if  allowed_file(file.filename) == False:
         flash('Only PNG and JPG filea are allowed!')
-        return render_template('index.html')
+        return render_template('selectimage.html')
 
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
 
     print('file.filename : ' + file.filename + ' full_filename : ' + full_filename)
-    archive_file(file.filename)
+    #archive_file(file.filename)
 
     # add your custom code to check that the uploaded file is a valid image
     file.save(full_filename)
@@ -97,7 +103,16 @@ def interpret():
     image = session['image_file']
     airesult = 'Testing'
     airesult = img_cls_wrapper.run_inference_on_image(image)
-    return render_template('aiwithprg.html', image_filename=session['image_file'], airesult= airesult)
+    return render_template('ai.html', image_filename=session['image_file'], airesult= airesult)
+
+@app.route('/interpret2', methods=['GET', 'POST'])
+def interpret2():
+    img_cls_wrapper = Imgclassifywrapper()
+
+    image = session['image_file']
+    airesult = 'Testing'
+    airesult = img_cls_wrapper.run_inference_on_image(image)
+    return airesult
 
 @app.route('/prg', methods=['GET'])
 def prg():

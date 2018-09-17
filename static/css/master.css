@@ -1,13 +1,13 @@
 
-<style>
+<style type="text/css">
 
 
 body {
     color:blue;
 }
-form {
-  background-color: LightGray;
-}
+
+
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -72,8 +72,8 @@ tr:hover {background-color:#f5f5f5;}
 tr:nth-child(even) {background-color: #f2f2f2;}
 
 h3 {
-  align:center:
-  colour:blue;
+  align:center;
+  color:slateblue;
 }
 
 .input {
@@ -133,6 +133,12 @@ img.resize {
     color:blue;
     align:center;
     text-align: center;
+}
+
+.column {
+    float: left;
+    width: 30%;
+    padding: 5px;
 }
 
 </style>

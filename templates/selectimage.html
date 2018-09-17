@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<script language="javascript" type="text/javascript">
+
+
+function init() {
+        document.getElementById("submitbtn").style.display = "none";
+    }
+
+
+
+</script>
+
+<div class="jumbotron">
+
+
+    <div id="fileselect">
+
+        &nbsp;&nbsp;<h3 style="color:slateblue;"> Select the image file to classify</h3>
+        <form action="/upload" method="post" enctype="multipart/form-data" id="uploadform">
+
+            <p style="color:slateblue; text-decoration: bold; font-size:130%">Select your image&nbsp;&nbsp;
+                <input type="file" name="image" accept="image/jpeg, image/png, image/jpg"
+                       onchange="chkFunction(this.value)" class="btn btn-info">
+
+                <br><br>
+
+                &nbsp;&nbsp;&nbsp;<input type="submit" value="Upload your image" id="submitbtn" class="btn btn-primary">
+
+        </form>
+    </div>
+</div>
+<br>
+<script>
+function chkFunction(val) {
+
+     if ( val.length > 0)
+     {
+        submitbtn = document.getElementById("submitbtn")
+       submitbtn.style.display = "block";
+       }
+}
+
+</script>
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+{% endblock %}
+
