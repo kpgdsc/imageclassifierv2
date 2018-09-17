@@ -1,6 +1,7 @@
 tensorflow
 Flask
 Pillow
+gunicorn
 uwsgi
 psycopg2
 
