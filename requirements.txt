@@ -1,6 +1,6 @@
-PIL=5.2.0
-tensorflow=1.10.1
-Flask=0.11.1
+PIL
+tensorflow
+Flask
 uwsgi
 psycopg2
 
