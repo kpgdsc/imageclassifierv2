@@ -23,6 +23,8 @@ NUMBER_IMAGE_FILE_FINAL = None
 
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.run(debug=True)
+
 
 def allowed_file(filename):
     return '.' in filename and \
