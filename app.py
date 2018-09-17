@@ -23,7 +23,7 @@ NUMBER_IMAGE_FILE_FINAL = None
 
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.run(debug=True)
+
 
 
 def allowed_file(filename):
@@ -200,12 +200,7 @@ def archive_file(source_filename):
     except:
         print("Unexpected error:", sys.exc_info())
 
-@app.after_request
-def add_header(response):
-    # response.cache_control.no_store = True
-    if 'Cache-Control' not in response.headers:
-        response.headers['Cache-Control'] = 'no-store'
-    return response
+
 
 if __name__ == '__main__' :
     app.run(debug=True)
