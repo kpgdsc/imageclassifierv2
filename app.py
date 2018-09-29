@@ -4,7 +4,8 @@ import shutil
 from forms import ClassifyForm
 import re
 from imgclassifywrapper import  Imgclassifywrapper
-from  predict   import predictint, imageprepare
+from  predict   import predict, imageprepare, init_tf
+from sentiment_gen import Sentiment
 
 
 
@@ -19,6 +20,10 @@ NUMBER_IMAGE_FILE_FINAL = None
 
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+sentiment = Sentiment()
+sentiment.init()
+
+
 
 
 def allowed_file(filename):
@@ -170,12 +175,39 @@ def num_prediction():
 
     imvalue = imageprepare(image_filename)
     print('0')
-    predint_global = predictint(imvalue)
+    init_tf()
+    predint = predict(imvalue)
 
 
-    airesult = predint_global[0]
+    airesult = predint[0]
 
     return render_template('number.html', image_filename=image_filename, airesult=airesult)
+
+@app.route('/sentiment_input', methods=['Get'])
+def sentiment_input():
+
+
+
+    return render_template('sentiment_input.html')
+
+
+@app.route('/sentiment_analysis', methods=['Get'])
+def sentiment_analysis():
+    global sentiment
+    input = request.args
+    tweet = input.get('tweet')
+    print('tweet : ' + tweet)
+
+
+    sentiment.init_run()
+
+    ai_result = sentiment.evaluate_sentence(tweet)
+
+
+    #   ai_result = tweet
+
+    print ('\n Result **** ' + ai_result  + '\n')
+    return ai_result
 
 def archive_file(source_filename):
     # adding exception handling
@@ -195,12 +227,7 @@ def archive_file(source_filename):
     except:
         print("Unexpected error:", sys.exc_info())
 
-@app.after_request
-def add_header(response):
-    # response.cache_control.no_store = True
-    if 'Cache-Control' not in response.headers:
-        response.headers['Cache-Control'] = 'no-store'
-    return response
+
 
 if __name__ == '__main__' :
     app.run(debug=True)

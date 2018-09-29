@@ -1,24 +1,23 @@
 import os, stat
 from os import path
 from flask import Flask, render_template, request, redirect, url_for
+from  predict   import predictint, imageprepare, init_tf, predict
 
-sfile = 'static/car.jpg'
-st = os.stat(sfile)
-print(st)
 
-full_filename = 'images/car.jpg'
-full_filename = 'images'
+
+full_filename = 'static/outputSep-17-2018_2220-1537203051.png'
+
 st = os.stat(full_filename)
-print(st)
+#print(st)
 
-path = 'images'
-os.chmod(path, 0o777)
+init_tf()
+imvalue = imageprepare(full_filename)
 
-os.chmod(path, st.st_mode | stat.S_IWOTH)
+'''
+predint = predictint(imvalue)
+print (predint[0])  # first value in list
+'''
 
-st = os.stat('uploads')
-os.chmod(path, st.st_mode | stat.S_IWOTH)
-# os.chmod('upload', stat.st_mode | stat.S_IWOTH)
 
-print('\n os.access(full_filename, os.X_OK) ')
-print ( os.access(path, os.X_OK) ) # Check for read access
+print ( predict(imvalue))
+print ( predict(imvalue))
